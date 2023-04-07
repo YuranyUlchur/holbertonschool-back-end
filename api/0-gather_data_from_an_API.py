@@ -39,8 +39,7 @@ def get_employee_todo_progress(employee_id):
     """Get employee name"""
     employee_name = employee['name']
 
-    print(f'Empleado {employee_name} ha completado tareas \
-          {number_of_done_tasks}/{total_number_of_tasks}:')
+    print("Employee {} is done with tasks({}\{}):".format(employee_name, number_of_done_tasks, total_number_of_tasks))
 
     """Print title of completed tasks"""
     for task in completed_tasks:
