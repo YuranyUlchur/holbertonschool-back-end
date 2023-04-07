@@ -3,6 +3,7 @@
 Gather data from an API
 """
 import requests
+import sys
 
 
 def get_employee_todo_progress(employee_id):
@@ -13,7 +14,8 @@ def get_employee_todo_progress(employee_id):
     """
     Perform GET request to the API to obtain the list of tasks
     """
-    todos_response = requests.get(f'https://jsonplaceholder.typicode.com/todos?userId={employee_id}')
+    link = (f'https://jsonplaceholder.typicode.com/todos?userId={employee_id}')
+    todos_response = requests.get(link)
     todos = todos_response.json()
 
     """
@@ -30,14 +32,15 @@ def get_employee_todo_progress(employee_id):
     """
     obtain employee information
     """
-    employee_response = requests.get(f'https://jsonplaceholder.typicode.com/users/{employee_id}')
+    link2 = (f'https://jsonplaceholder.typicode.com/users/{employee_id}')
+    employee_response = requests.get(link2)
     employee = employee_response.json()
 
     """Get employee name"""
     employee_name = employee['name']
 
-
-    print(f'Empleado {employee_name} ha completado tareas {number_of_done_tasks}/{total_number_of_tasks}:')
+    print(f'Empleado {employee_name} ha completado tareas \
+          {number_of_done_tasks}/{total_number_of_tasks}:')
 
     """Print title of completed tasks"""
     for task in completed_tasks:
@@ -46,6 +49,6 @@ def get_employee_todo_progress(employee_id):
 
 if __name__ == "__main__":
     """Prompts the user for the employee's ID"""
-    employee_id = int(input("Ingrese el ID del empleado: "))
+    employee_id = (int(sys.argv[1]))
 
     get_employee_todo_progress(employee_id)
